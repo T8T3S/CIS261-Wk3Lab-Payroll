@@ -1,22 +1,22 @@
 import locale
 locale.setlocale(locale.LC_ALL, 'en_US.utf-8')
-def GetEmpInfo():
-    totalhours = float(input('Total Hours: '))
-    hourlyrate = float(input('Hourly Rate: '))
-    incometaxrate = input('Income Tax Rate: ')
+def get_employee_info():
+    totalhours = float(input('Enter number of hours worked: '))
+    hourlyrate = float(input('Enter hourly rate: '))
+    incometaxrate = input('Enter income tax rate: ')
     return totalhours, hourlyrate, incometaxrate
-def GetIncTaxNetPay(totalhours, incometaxrate, hourlyrate):
+def get_income_tax_and_net_pay(totalhours, incometaxrate, hourlyrate):
     grosspay = hourlyrate * totalhours
     incometax = float(grosspay) * (float(incometaxrate)/100)
     netpay = float(grosspay) - float(incometax)
     return incometax, netpay, grosspay, hourlyrate
-def PrintEnd(employeecount, totalhoursworked, totalgrosspay, totalincometax, totalnetpay):
+def print_all_payroll(employeecount, totalhoursworked, totalgrosspay, totalincometax, totalnetpay):
     print(f'Total number of employees:  {employeecount}')
     print(f'Total hours worked:         {totalhoursworked}')
     print(f'Total gross pay:            {totalgrosspay}')
     print(f'Total income taxes:         {totalincometax}')
     print(f'Total net play:             {totalnetpay}')
-def PrintEmployee(name, totalhours, hourlyrate, grosspay, incometaxrate, incometax, netpay):
+def print_single_employee(name, totalhours, hourlyrate, grosspay, incometaxrate, incometax, netpay):
     print(f'Employee Name:          {name}')
     print(f'Hours Worked:           {totalhours}')
     print(f'Hourly Rate:            {hourlyrate}')
@@ -30,16 +30,16 @@ totalgrosspay = 0.00
 totalincometax = 0.00
 totalnetpay = 0.00
 while True:
-    name = input('Employee Name: ')
+    name = input('Enter employee name: ')
     if name == 'End':
-        PrintEnd(employeecount, totalhoursworked, locale.currency(totalgrosspay), locale.currency(totalincometax), locale.currency(totalnetpay))
+        print_all_payroll(employeecount, totalhoursworked, locale.currency(totalgrosspay), locale.currency(totalincometax), locale.currency(totalnetpay))
         break
     else:
-        totalhours, hourlyrate, incometaxrate = GetEmpInfo()
-        incometax, netpay, grosspay, hourlyrate = GetIncTaxNetPay(totalhours, incometaxrate, hourlyrate)
+        totalhours, hourlyrate, incometaxrate = get_employee_info()
+        incometax, netpay, grosspay, hourlyrate = get_income_tax_and_net_pay(totalhours, incometaxrate, hourlyrate)
         employeecount += 1
         totalhoursworked += totalhours
         totalgrosspay += grosspay
         totalincometax += incometax
         totalnetpay += netpay
-        PrintEmployee(name, format(totalhours,'.2f'), locale.currency(hourlyrate), locale.currency(grosspay), incometaxrate, locale.currency(incometax), locale.currency(netpay))
+        print_single_employee(name, format(totalhours,'.2f'), locale.currency(hourlyrate), locale.currency(grosspay), incometaxrate, locale.currency(incometax), locale.currency(netpay))
