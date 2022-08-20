@@ -1,0 +1,27 @@
+Complete the following in Practice Labs:
+Create code that will open a text file for storing the employee information. 
+  The file must be opened so that entered data is added to the data already in the file.
+Modify the code that stores the data in list objects to now write the from date, to date,
+  employee name, hours worked, pay rate, and income tax rate as a record in pipe-delimited format to the text file
+After the user terminates the data entry loop, call a new function that will:
+Get input from the user for the From Date for which the report should be run.
+  If the user enters “All” then all records will be read and displayed.  Validate that the from date entered is in the format mm/dd/yyyy.
+Write a loop to read the records from the text file.
+  If the user entered “All” or the from date in the record matches what the user entered,
+  store each data element in a variable, and for that employee calculate the income tax and net pay.
+Display the from date, to date, employee name, hours worked, hourly rate, gross pay, income tax rate,
+  income taxes and net pay for the employee inside the loop.
+Increment the total number of employees, total hours, total tax, total net
+  pay and store the values in a dictionary object inside the loop.
+Display the totals after the loop terminates.
+Submit the Python source code file and a Word document that contains a screen
+  shot of input and display for two employees, each with a different from date; a screen shot of the display of totals when the user enters “All”;
+  a screen shot of the totals when the user enters a From Date.  A minimum of five employees must be entered and at least two different start dates
+  to receive full credit. Include a 1-2 sentence reflection on the successes and/or challenges you had with this assignment.
+Ensure all functionality is working correctly and code is written efficiently.
+  For purposes of this assignment, writing code efficiently is defined as:
+Using correct naming conventions for all variables and objects.
+Using correct naming conventions for functions and methods.
+Using built-in functions whenever possible.  
+Using the fewest lines of code needed to return multiple values from functions.
+Using the fewest lines of code needed to complete the functionality defined.
