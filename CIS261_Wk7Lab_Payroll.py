@@ -1,20 +1,43 @@
 from datetime import datetime
+def convert_from_p_del_to_list(data,date):
+    line_break_split = data.split('\n')
+    line_break_split.pop()
+    for l in line_break_split:
+        new_split = l.split('|')
+        new_list = []
+        from_date = new_split[0]
+        to_date = new_split[1]
+        name = new_split[2]
+        totalhours = new_split[3]
+        hourlyrate = new_split[4]
+        incometaxrate = new_split[5]
+        new_dict = {
+            "from_date"     :   from_date,
+            "to_date"       :   to_date,
+            "name"          :   name,
+            "hoursworked"   :   totalhours,
+            "hourlyrate"    :   hourlyrate,
+            "incometaxrate" :   incometaxrate
+            }
+        if date.lower()=="all" or datetime.strptime(date, "%m/%d/%Y") <= datetime.strptime(new_dict["from_date"], "%m/%d/%Y"):
+            print(f'{name}\'s time matches what was entered')
+            new_list.append(new_dict)
+        else:
+            pass
 def get_search_date():
     report_search_date = input('Search Date (mm/dd/yyyy) or All: ')
+
+    file = open("payroll.txt", 'r')
+    data = file.read()
+    data_to_read = convert_from_p_del_to_list(data, report_search_date)
     if report_search_date.lower() == "all":
+        # Write a function that prints all.
         pass
     else:
         try:
             formatted_date = datetime.strptime(report_search_date, "%m/%d/%Y")
         except ValueError:
             print('Invalid date format. Try again.\n')
-    # try:
-    #     if report_search_date == datetime.datetime.strptime(report_search_date,'%m/%d/%Y') or report_search_date.lower() == 'all':
-    #         print('wow we did it')
-    #     else:
-    #         raise ValueError
-    # except:
-    #     print('Invalid date format. Use (mm/dd/yyyy).')
 def write_to_file(from_date, to_date, name, hoursworked, hourlyrate, incometaxrate):
     file = open('payroll.txt', 'a+')
     file.write(f'{from_date}|{to_date}|{name}|{hoursworked}|{hourlyrate}|{incometaxrate}|\n')

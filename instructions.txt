@@ -1,11 +1,13 @@
-Complete the following in Practice Labs:
-Create code that will open a text file for storing the employee information. 
+--Complete the following in Practice Labs:
+--Create code that will open a text file for storing the employee information. 
   The file must be opened so that entered data is added to the data already in the file.
-Modify the code that stores the data in list objects to now write the from date, to date,
-  employee name, hours worked, pay rate, and income tax rate as a record in pipe-delimited format to the text file
-After the user terminates the data entry loop, call a new function that will:
-Get input from the user for the From Date for which the report should be run.
-  If the user enters “All” then all records will be read and displayed.  Validate that the from date entered is in the format mm/dd/yyyy.
+--Modify the code that stores the data in list objects to now write the from date, to date,
+  employee name, hours worked, pay rate, and income tax rate as a record in pipe-delimited 
+  format to the text file
+--After the user terminates the data entry loop, call a new function that will:
+--Get input from the user for the From Date for which the report should be run.
+  If the user enters “All” then all records will be read and displayed.
+  --Validate that the from date entered is in the format mm/dd/yyyy.
 Write a loop to read the records from the text file.
   If the user entered “All” or the from date in the record matches what the user entered,
   store each data element in a variable, and for that employee calculate the income tax and net pay.
