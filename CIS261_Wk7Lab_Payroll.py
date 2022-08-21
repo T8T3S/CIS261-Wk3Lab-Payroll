@@ -21,7 +21,7 @@ def convert_from_p_del_to_list(data,entered_date):
             }
         if entered_date == "all" or entered_date <= datetime.strptime(new_dict["from_date"], "%m/%d/%Y"):
             new_list.append(new_dict)
-    return(new_list)
+    return new_list
             
 def get_search_date():
     file = open("payroll.txt", 'r')
@@ -35,11 +35,13 @@ def get_search_date():
             formatted_date = datetime.strptime(report_search_date, "%m/%d/%Y")
             data_to_read = convert_from_p_del_to_list(data, formatted_date)
             print_all_payroll(data_to_read)
+            file.close()
         except ValueError:
             print('Invalid date format. Try again.\n')
 def write_to_file(from_date, to_date, name, hoursworked, hourlyrate, incometaxrate):
     file = open('payroll.txt', 'a+')
     file.write(f'{from_date}|{to_date}|{name}|{hoursworked}|{hourlyrate}|{incometaxrate}|\n')
+    file.close()
 def get_total_hours():
     totalhours = float(input('Enter number of hours worked: '))
     return totalhours
@@ -69,36 +71,38 @@ def get_income_tax_and_net_pay(totalhours, incometaxrate, hourlyrate):
     netpay = calc_net_pay(grosspay, incometax)
     return incometax, netpay, grosspay
 def print_all_payroll(employee_list):
-    employeecount = 0
-    totalhoursworked = 0.00
-    totalgrosspay = 0.00
-    totalincometax = 0.00
-    totalnetpay = 0.00
-    for e in employee_list:
-        from_date      =   e['from_date']
-        to_date        =   e['to_date']
-        name           =   e['name']
-        totalhours     =   e['hoursworked']
-        hourlyrate     =   e['hourlyrate']
-        incometaxrate  =   e['incometaxrate']
-        incometax, netpay, grosspay = get_income_tax_and_net_pay(totalhours, incometaxrate, hourlyrate)
-        print(from_date, to_date, name, f'{totalhours:,.2f}', f'{hourlyrate:,.2f}', f'{grosspay:,.2f}', f'{incometaxrate:,.2f}%', f'{incometax:,.2f}', f'{netpay:,.2f}',)
-        employeecount += 1
-        totalhoursworked += totalhours
-        totalgrosspay += grosspay
-        totalincometax += incometax
-        totalnetpay += netpay
-        employee_totals['number_of_employees'] = employeecount
-        employee_totals['total_hours_worked'] = totalhoursworked
-        employee_totals['total_gross_pay'] = totalgrosspay
-        employee_totals['total_income_tax'] = totalincometax
-        employee_totals['total_net_pay'] = totalnetpay
-    print(f'Total number of employees:  {employee_totals["number_of_employees"]}')
-    print(f'Total hours worked:         {employee_totals["total_hours_worked"]:,.2f}')
-    print(f'Total gross pay:            {employee_totals["total_gross_pay"]:,.2f}')
-    print(f'Total income taxes:         {employee_totals["total_income_tax"]:,.2f}')
-    print(f'Total net pay:              {employee_totals["total_net_pay"]:,.2f}')
-
+    if len(employee_list) != 0:
+        employeecount = 0
+        totalhoursworked = 0.00
+        totalgrosspay = 0.00
+        totalincometax = 0.00
+        totalnetpay = 0.00
+        for e in employee_list:
+            from_date      =   e['from_date']
+            to_date        =   e['to_date']
+            name           =   e['name']
+            totalhours     =   e['hoursworked']
+            hourlyrate     =   e['hourlyrate']
+            incometaxrate  =   e['incometaxrate']
+            incometax, netpay, grosspay = get_income_tax_and_net_pay(totalhours, incometaxrate, hourlyrate)
+            print(from_date, to_date, name, f'{totalhours:,.2f}', f'{hourlyrate:,.2f}', f'{grosspay:,.2f}', f'{incometaxrate:,.2f}%', f'{incometax:,.2f}', f'{netpay:,.2f}',)
+            employeecount += 1
+            totalhoursworked += totalhours
+            totalgrosspay += grosspay
+            totalincometax += incometax
+            totalnetpay += netpay
+            employee_totals['number_of_employees'] = employeecount
+            employee_totals['total_hours_worked'] = totalhoursworked
+            employee_totals['total_gross_pay'] = totalgrosspay
+            employee_totals['total_income_tax'] = totalincometax
+            employee_totals['total_net_pay'] = totalnetpay
+        print(f'Total number of employees:  {employee_totals["number_of_employees"]}')
+        print(f'Total hours worked:         {employee_totals["total_hours_worked"]:,.2f}')
+        print(f'Total gross pay:            {employee_totals["total_gross_pay"]:,.2f}')
+        print(f'Total income taxes:         {employee_totals["total_income_tax"]:,.2f}')
+        print(f'Total net pay:              {employee_totals["total_net_pay"]:,.2f}')
+    else:
+        print('No data returned.')
 employee_totals = {}
 
 while True:
@@ -114,5 +118,3 @@ while True:
         hourlyrate = get_hourly_rate()
         incometaxrate = get_income_tax_rate()
         write_to_file(from_date, to_date, name, hoursworked, hourlyrate, incometaxrate)
-# print_all_payroll(employee_list)
-# print_payroll_totals(employee_totals)
