@@ -1,29 +1,35 @@
---Complete the following in Practice Labs:
---Create code that will open a text file for storing the employee information. 
-  The file must be opened so that entered data is added to the data already in the file.
---Modify the code that stores the data in list objects to now write the from date, to date,
-  employee name, hours worked, pay rate, and income tax rate as a record in pipe-delimited 
-  format to the text file
---After the user terminates the data entry loop, call a new function that will:
---Get input from the user for the From Date for which the report should be run.
-  If the user enters “All” then all records will be read and displayed.
-  --Validate that the from date entered is in the format mm/dd/yyyy.
---Write a loop to read the records from the text file.
-  --If the user entered “All” or the from date in the record matches what the user entered,
-  --store each data element in a variable, and for that employee calculate the income tax and net pay.
--Display the from date, to date, employee name, hours worked, hourly rate, gross pay, income tax rate,
-  --income taxes and net pay for the employee inside the loop.
---Increment the total number of employees, total hours, total tax, total net
-  --pay and store the values in a dictionary object inside the loop.
---Display the totals after the loop terminates.
-Submit the Python source code file and a Word document that contains a screen
-  shot of input and display for two employees, each with a different from date; a screen shot of the display of totals when the user enters “All”;
-  a screen shot of the totals when the user enters a From Date.  A minimum of five employees must be entered and at least two different start dates
-  to receive full credit. Include a 1-2 sentence reflection on the successes and/or challenges you had with this assignment.
-Ensure all functionality is working correctly and code is written efficiently.
-  For purposes of this assignment, writing code efficiently is defined as:
-Using correct naming conventions for all variables and objects.
-Using correct naming conventions for functions and methods.
-Using built-in functions whenever possible.  
-Using the fewest lines of code needed to return multiple values from functions.
-Using the fewest lines of code needed to complete the functionality defined.
+Instructions for New Application
+  Create and call a function to:
+    Open a text file for storing the user information. The file must be opened so that entered data is added to the data already in the file.
+    Use a loop to read the current records from the text file and save the user ID into a list object for validation purposes.
+  Create and call a function to use a loop that will obtain user input until terminated by the user typing “End.”
+    Allow the user to input a user ID, password, and authorization code. Validate that the user ID does not already exist in the list object and that only “Admin” or “User” is entered as an authorization code.
+    Write the user ID, password, and validation code as a pipe-delimited list to the text file and add the user ID to the list object if all validations have passed.
+  After the user terminates the data entry loop, create and call a new function that will:
+    Open the text file that contains the user login information.
+    Display the user ID, password, and authorization code for all users.
+  Ensure all functionality is working correctly and code is written efficiently. For purposes of this assignment, writing code efficiently is defined as:
+    Using correct naming conventions for all variables and objects.
+    Using correct naming conventions for functions and methods.
+    Using built-in functions whenever possible.
+    Using the fewest lines of code needed to return multiple values from functions.
+    Using the fewest lines of code needed to complete the functionality defined.
+Instructions for Existing Application
+  Create and call a function for login process:
+    Open the text file with the user login information.
+    Read each record from the file and store the user ID, password, and authorization code in a list object. Note: Multiple list objects may be needed for this functionality.
+    Enter a user ID.
+    Enter a password.
+    Validate the user ID by reading the list object. If the user does not exist, display an appropriate message and exit the application.
+    If the user ID is valid, store the authentication code in a variable.
+  Modify code for authorization functionality:
+    If the authorization code is “Admin,” allow the user to enter and display data.
+    If the authorization code is “User,” allow the user to display data only.
+    Modify the display of the data and totals to first display the user ID and authorization code.
+  Submit the Python source code files and a Word document that contains a screenshot of input and display for user login information; a screenshot of data entry and the display of detail and totals when the authorization code is “Admin”; a screenshot of display of detail and totals only when the authorization code is “User." Include a 1–2 sentence reflection on the successes and challenges you had with this assignment.
+  Ensure all functionality is working correctly and code is written efficiently. For purposes of this assignment, writing code efficiently is defined as:
+    Using correct naming conventions for all variables and objects.
+    Using correct naming conventions for functions and methods.
+    Using built-in functions whenever possible.
+    Using the fewest lines of code needed to return multiple values from functions.
+    Using the fewest lines of code needed to complete the functionality defined.
