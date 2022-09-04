@@ -28,7 +28,7 @@ def login():
                     print('Password incorrect. Try again.')
                     auth_code = False
                     return auth_code, False
-        
+
 def convert_from_p_del_to_list(data,entered_date):
     line_break_split = data.split('\n')
     line_break_split.pop()
@@ -49,8 +49,12 @@ def convert_from_p_del_to_list(data,entered_date):
             "hourlyrate"    :   float(hourlyrate),
             "incometaxrate" :   float(incometaxrate)
             }
-        if entered_date.lower() == "all" or entered_date <= datetime.strptime(new_dict["from_date"], "%m/%d/%Y"):
-            new_list.append(new_dict)
+        try:
+            if entered_date.lower():
+                new_list.append(new_dict)
+        except:
+            if entered_date <= datetime.strptime(new_dict["from_date"], "%m/%d/%Y"):
+                new_list.append(new_dict)
     return new_list
             
 def get_search_date(a,u):

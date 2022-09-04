@@ -15,7 +15,6 @@ def get_user_info(file, user_id_list):
     user_id = input('USER_ID: ') 
     password = input('PASSWORD: ')
     auth_code = input('AUTHORIZATION CODE: ')
-    # if 'end' in [user_id.lower(), password.lower(), auth_code.lower()]:
     if user_id.lower() == 'end':
       break
     elif user_id.lower() in user_id_list:
@@ -24,9 +23,9 @@ def get_user_info(file, user_id_list):
       if auth_code == 'Admin' or auth_code == 'User':
         new_record = f'{user_id.lower()}|{password}|{auth_code}\n'
         file.write(new_record)
-        file.close()
       else:
         print('Incorrect Authorization Code Given, Try Again.')
+  file.close()
 
 def display_info(file):
   file = open('top_secret.txt', 'rt')
